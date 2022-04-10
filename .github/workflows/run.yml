@@ -5,7 +5,8 @@ name: are github actions working right now?
 # Controls when the workflow will run
 on:
   schedule:
-    - cron: "0 0,12 * * *"
+    - cron: "*/1 * * * *"
+#     - cron: "0 0,12 * * *"
 
 jobs:
   build:
