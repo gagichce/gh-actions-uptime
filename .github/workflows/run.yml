@@ -7,18 +7,25 @@ on:
   schedule:
     - cron: "0 0,12 * * *"
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+    - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+        fetch-depth: 0
+    - name: Create local changes
+      run: |
+        now=$(date +"%T")
+        echo "[$now] Yes, it is." >> status_log.txt
+    - name: Commit files
+      run: |
+        git config --local user.email "colin@cengtech.com"
+        git config --local user.name "Colin Gagich (gagichce)"
+        git commit -m "It appears to be working right now." -a
+    - name: Push changes
+      uses: ad-m/github-push-action@a3fd843e49cd58d296bdd2431c4853569a1b900f
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
