@@ -18,7 +18,7 @@ jobs:
         fetch-depth: 0
     - name: Create local changes
       run: |
-        now=$(date +"%T")
+        now=$(date +"%D %T")
         echo "[$now] Yes, it is." >> status_log.txt
     - name: Commit files
       run: |
