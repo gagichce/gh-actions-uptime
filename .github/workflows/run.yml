@@ -1,12 +1,8 @@
-# This is a basic workflow to help you get started with Actions
-
 name: are github actions working right now?
 
-# Controls when the workflow will run
 on:
   schedule:
-    - cron: "*/5 * * * *"
-#     - cron: "0 0,12 * * *"
+    - cron: "0 */3 * * *"
 
 jobs:
   build:
