@@ -2,7 +2,7 @@ name: are github actions working right now?
 
 on:
   schedule:
-    - cron: "0 */3 * * *"
+    - cron: "0 */2 * * *"
 
 jobs:
   build:
